@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const search = new URLSearchParams(window.location.search);
+        const shop = search.get("shop");
+        const embedded = search.get("embedded");
+        const state = search.get("state");
+
+        const redirect_uri = "https://localhost/auth"
+        const nonce = "hello123"
+
+        const redirectUrl = `${redirect_uri}?shop=${shop}&state=${nonce}`;
+        if (embedded === '1' && state !== nonce) { window.top.location = redirectUrl; } else {
+            console.log("CALL API AUTH HMAC: ", window.location.search);
+        }
+    </script>
+</body>
+
+</html>
