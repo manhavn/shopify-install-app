@@ -1,27 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        const search = new URLSearchParams(window.location.search);
-        const shop = search.get("shop");
-        const embedded = search.get("embedded");
-        const state = search.get("state");
+      const redirect_uri = "https://localhost/auth";
+      const stateValue = "testAppVersion1.0.2";
 
-        const redirect_uri = "https://localhost/auth"
-        const nonce = "hello123"
+      const timeCheck = new Date().toISOString().slice(0, 13);
+      if (window.sessionStorage.getItem(stateValue) !== timeCheck) {
+        window.sessionStorage.setItem(stateValue, timeCheck);
 
-        const redirectUrl = `${redirect_uri}?shop=${shop}&state=${nonce}`;
-        if (embedded === '1' && state !== nonce) { window.top.location = redirectUrl; } else {
-            console.log("CALL API AUTH HMAC: ", window.location.search);
-        }
+        const redirectUrl = `${redirect_uri}${window.location.search}&state=${stateValue}`;
+        window.top.location = redirectUrl;
+      } else {
+        console.log("CALL API AUTH HMAC: ", window.location.search);
+      }
     </script>
-</body>
-
+  </body>
 </html>

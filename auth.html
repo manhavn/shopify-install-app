@@ -1,25 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        const search = new URLSearchParams(window.location.search);
-        const shop = search.get("shop");
-        const state = search.get("state");
+      const search = new URLSearchParams(window.location.search);
+      const shop = search.get("shop");
+      const state = search.get("state");
 
-        const scopes = "write_products,read_shipping"
-        const client_id = "3e3443260756f66acbf23679dc11f760"
-        const redirect_uri = "https://localhost/api"
+      const scopes = "write_products,read_shipping";
+      const client_id = "3e3443260756f66acbf23679dc11f760";
+      const redirect_uri = "https://localhost/api";
 
-        const redirectUrl = `https://${shop}/admin/oauth/authorize?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirect_uri}&state=${state}`;
-        window.location = redirectUrl;
+      const redirectUrl = `https://${shop}/admin/oauth/authorize?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirect_uri}&state=${state}`;
+      window.location = redirectUrl;
     </script>
-</body>
-
+  </body>
 </html>
